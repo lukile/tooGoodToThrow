@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">TooGoodToThrow</string>
+    <string name="categories"><b>Catégories</b></string>
+    <string name="fruits_and_vegetables">Fruits et légumes</string>
+    <string name="milk_products">Produits laitiers</string>
+    <string name="prepared_food">Plats cuisinés</string>
+    <string name="starchy">Féculents</string>
+    <string name="candy_and_sweet">Bonbons et sucreries</string>
+    <string name="drinks">Boissons</string>
+    <string name="meat_and_fish">Viandes et poissons</string>
+    <string name="frozen">Surgelés</string>
+    <string name="grocery">Epicerie</string>
+    <string name="baby_feeding">Alimentation bébé</string>
+    <string name="tea_coffee_chocolate">Thé, café, chocolat</string>
+    <string name="validate_button">Valider</string>
+    <string name="add_product_cgu">Conditions de TooGoodToThrow</string>
+    <string name="add_product">Ajout d\'un produit</string>
+    <string name="add_product_text_cgu">Le donateur s\'engage à fournir des produits de qualité dans le respect de la santé des utilisateurs.
+        \n\nTooGoodToThrow ne peut être tenu responsable de la mauvaise qualité de la nourriture offerte.
+        \n\nJe certifie :\n\nEtre majeur, \nNe pas être sous tutelle\nNe pas donner d'alcool ni de produits stupéfiants</string>
 </resources>
