@@ -18,7 +18,7 @@ public class SignupPresenter {
         this.signupView = signupView;
     }
 
-    public void signup (, String firstname, String lastname, String
+    public void signup (String firstname, String lastname, String
             password, String confirmPassword, String email){
         String baseUrl = "http://10.0.2.2:3000/";
         JSONObject userJson = new JSONObject();
