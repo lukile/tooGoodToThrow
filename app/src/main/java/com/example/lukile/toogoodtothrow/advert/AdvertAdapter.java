@@ -75,7 +75,7 @@ public class AdvertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
 
 
         if(holder instanceof AdvertAdapter.AdvertViewHolder) {
@@ -83,7 +83,10 @@ public class AdvertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             viewHolder.bind(data.get(position), new AdvertAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(Advert item) {
-                    Log.e("merci yoda", item.toString());
+                    Intent intent = new Intent(activity, DetailAdvertActivity.class);
+                    intent.putExtra("advert_id", data.get(position).getId());
+                    activity.startActivity(intent);
+                    //Log.e("merci yoda", item.toString());
 
 
                 }
@@ -122,7 +125,10 @@ public class AdvertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             }
 
 
-            viewHolder.textView.setText(advertName);
+            viewHolder.textViewName.setText(advertName);
+            viewHolder.textViewDistance.setText(data.get(position).getIdUser().toString());
+            viewHolder.textViewTime.setText("Disponible entre : " + data.get(position).getStartTimeSlot() + " et " + data.get(position).getEndTimeSlot());
+
 
             Picasso.get()
                     .load(imageUrl)
@@ -148,12 +154,16 @@ public class AdvertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     static class AdvertViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textView;
+        TextView textViewName;
+        TextView textViewDistance;
+        TextView textViewTime;
         ImageView imageView;
 
         AdvertViewHolder(View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.advertName);
+            textViewName = itemView.findViewById(R.id.advertName);
+            textViewDistance = itemView.findViewById(R.id.advertdistance);
+            textViewTime = itemView.findViewById(R.id.adverttime);
             imageView = itemView.findViewById(R.id.img_advert);
         }
 

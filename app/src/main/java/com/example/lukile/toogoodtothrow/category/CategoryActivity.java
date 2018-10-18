@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.example.lukile.toogoodtothrow.OnBottomReachedListener;
 import com.example.lukile.toogoodtothrow.R;
+import com.example.lukile.toogoodtothrow.model.Category;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ public class CategoryActivity extends AppCompatActivity implements ICategoryView
 
 
     @Override
-    public void printCategory(final List<String> categories) {
+    public void printCategory(final List<Category> categories) {
         adapter.resetData(categories);
         adapter.setOnBottomReachedListener(new OnBottomReachedListener() {
             @Override

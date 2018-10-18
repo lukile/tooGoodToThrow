@@ -25,7 +25,7 @@ public class CategoryPresenter {
     }
 
     public void allCategories(){
-        final List<String> categoriessList = new ArrayList<>();
+        final List<Category> categoriessList = new ArrayList<>();
 
 
         String baseUrl = "http://10.0.2.2:8080/";
@@ -45,7 +45,7 @@ public class CategoryPresenter {
                         Log.d( "fsdds","name : " + results[0].getName());
 
                         for (Category category : results) {
-                            categoriessList.add(category.getName());
+                            categoriessList.add(category);
                         }
 
                         categoryView.printCategory(categoriessList);

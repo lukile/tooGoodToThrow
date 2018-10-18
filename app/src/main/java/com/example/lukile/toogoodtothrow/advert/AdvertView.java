@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AdvertView {
     void printAdvert (List<Advert> advert);
+    void printOneAdvert (Advert advert);
 }

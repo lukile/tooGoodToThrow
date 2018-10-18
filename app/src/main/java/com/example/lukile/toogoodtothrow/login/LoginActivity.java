@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.lukile.toogoodtothrow.R;
 import com.example.lukile.toogoodtothrow.category.CategoryActivity;
 import com.example.lukile.toogoodtothrow.model.SaveUserDataPreferences;
+import com.example.lukile.toogoodtothrow.signup.SignupActivity;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
     Button btnLogin;
@@ -22,6 +23,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     EditText editTextEmail;
     EditText editTextPassword;
+    Button buttonCreateAccount;
     SaveUserDataPreferences dataUser = null;
 
 
@@ -33,9 +35,17 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         loginPresenter = new LoginPresenter(this);
 
         btnLogin = findViewById(R.id.btn_login);
+        buttonCreateAccount = findViewById(R.id.create_account);
 
         editTextEmail = findViewById(R.id.email_input);
         editTextPassword = findViewById(R.id.pwd_input);
+
+        buttonCreateAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +56,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
                 loginPresenter.verifyData(email, password);
             }
         });
+
     }
 
     @Override

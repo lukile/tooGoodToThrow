@@ -17,6 +17,7 @@ import com.example.lukile.toogoodtothrow.OnBottomReachedListener;
 import com.example.lukile.toogoodtothrow.R;
 import com.example.lukile.toogoodtothrow.advert.AdvertActivity;
 import com.example.lukile.toogoodtothrow.login.LoginActivity;
+import com.example.lukile.toogoodtothrow.model.Category;
 import com.example.lukile.toogoodtothrow.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
 
@@ -37,15 +38,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private boolean isLoading;
     private boolean shouldListenToOnBottomReached = true;
 
-    private List<String> data = new ArrayList<>();
+    private List<Category> data = new ArrayList<>();
     private OnItemClickListener listener;
 
     public interface OnItemClickListener {
-        void onItemClick(String item);
+        void onItemClick(Category item);
     }
 
 
-    public CategoryAdapter(List<String> data, OnItemClickListener listener){
+    public CategoryAdapter(List<Category> data, OnItemClickListener listener){
         this.data = data;
         this.listener = listener;
     }
@@ -74,22 +75,24 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
 
 
         if(holder instanceof CategoryViewHolder) {
             final CategoryViewHolder viewHolder = (CategoryViewHolder) holder;
             viewHolder.bind(data.get(position), new OnItemClickListener() {
                 @Override
-                public void onItemClick(String item) {
-                    activity.startActivity(new Intent(activity, AdvertActivity.class));
-                    Log.e("merci yoda", item);
+                public void onItemClick(Category item) {
+                    Intent intent = new Intent(activity, AdvertActivity.class);
+                    intent.putExtra("id_category", data.get(position).getId());
+                    activity.startActivity(intent);
+                    Log.e("merci yoda", item.toString());
                 }
             });
 
             final ImageView imvCharacter = viewHolder.imageView;
 
-            final String categoryName = data.get(position);
+            final String categoryName = data.get(position).getName();
 
             final int imageUrl;
 
@@ -155,7 +158,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             imageView = itemView.findViewById(R.id.img_category);
         }
 
-        public void bind(final String item, final OnItemClickListener listener) {
+        public void bind(final Category item, final OnItemClickListener listener) {
 
         itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
@@ -185,7 +188,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return null;
     }
 
-    public void resetData(List<String> items) {
+    public void resetData(List<Category> items) {
         this.data = items;
         notifyDataSetChanged();
     }

@@ -1,5 +1,6 @@
 package com.example.lukile.toogoodtothrow.signup;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,8 +11,9 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 
 import com.example.lukile.toogoodtothrow.R;
+import com.example.lukile.toogoodtothrow.login.LoginActivity;
 
-public class SignupActivity extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity implements SignupView {
 
     private static final String TAG = "SignupActivity";
 
@@ -109,5 +111,10 @@ public class SignupActivity extends AppCompatActivity {
                 signupPresenter.signup(firstname, lastname, password, confirmPassword, email);
             }
         });
+    }
+
+    @Override
+    public void validationData(String token) {
+        startActivity(new Intent(SignupActivity.this, LoginActivity.class));
     }
 }
