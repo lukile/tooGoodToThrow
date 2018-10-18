@@ -17,7 +17,7 @@
     <string name="add_product">Ajout d\'un produit</string>
     <string name="add_product_text_cgu">Le donateur s\'engage à fournir des produits de qualité dans le respect de la santé des utilisateurs.
         \n\nTooGoodToThrow ne peut être tenu responsable de la mauvaise qualité de la nourriture offerte.
-        \n\nJe certifie :\n\nEtre majeur, \nNe pas être sous tutelle\nNe pas donner d'alcool ni de produits stupéfiants</string>
+        \n\nJe certifie :\n\nEtre majeur, \nNe pas être sous tutelle\nNe pas donner d\'alcool ni de produits stupéfiants</string>
     <string name="signup_tv">Je m\'inscris !</string>
     <string name="lastname_hint">name</string>
     <string name="firstname_hint">firstname</string>
@@ -33,7 +33,12 @@
 
 ToGoodToThrow ne peut être tenu responsable de la mauvaise qualitée de la nourriture offerte.
 
-Je certifie également être majeur et ne pas être sous tutelle, ne pas vendre d'alcool ni de produits stupéfiants.
+Je certifie également être majeur et ne pas être sous tutelle, ne pas vendre d\'alcool ni de produits stupéfiants.
 
 </string>
+    <string name="title_application">TooGoodToThrow</string>
+    <string name="create_account"><u>Je n\'ai pas de compte, en créer un</u></string>
+    <string name="pwd_forgotten">J\'ai oublié mon mot de passe</string>
+    <string name="email">Email</string>
+    <string name="password">Entrez votre mot de passe</string>
 </resources>
