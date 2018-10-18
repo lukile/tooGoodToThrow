@@ -18,9 +18,12 @@
         </activity>
         <activity android:name=".signup.SignupActivity" />
         <activity android:name=".conditions.ConditionsSignupActivity" />
+<<<<<<< HEAD
         <activity android:name=".LoginActivity" />
         <activity android:name=".ResetPasswordActivity"></activity>
+=======
         <activity android:name=".product.ProductActivity"></activity>
+>>>>>>> 6cf00b20e8e8ade717074e5383c2842954793a4e
     </application>
 
 </manifest>
