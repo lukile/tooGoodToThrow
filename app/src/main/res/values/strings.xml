@@ -36,4 +36,21 @@ ToGoodToThrow ne peut être tenu responsable de la mauvaise qualitée de la nour
 Je certifie également être majeur et ne pas être sous tutelle, ne pas vendre d\'alcool ni de produits stupéfiants.
 
 </string>
+    <string name="title_application">TooGoodToThrow</string>
+    <string name="create_account"><u>Je n\'ai pas de compte, en créer un</u></string>
+    <string name="pwd_forgotten">J\'ai oublié mon mot de passe</string>
+    <string name="email">Email</string>
+    <string name="password">Entrez votre mot de passe</string>
+    <string name="title_ad">J\'enregistre un produit</string>
+    <string name="product_choice">Choix du produit</string>
+    <string name="state_product">Etat du produit</string>
+    <string name="expiry_more_one_week">Péremption + d\'une semaine</string>
+    <string name="expiry_one_week">Se périme dans une semaine</string>
+    <string name="expiry_few_days">Se  périme dans quelques jours</string>
+    <string name="expiry_urgent">Urgent</string>
+    <string name="expiry_date">Date de péremption</string>
+    <string name="quantity">Quantité</string>
+    <string name="pickup_date">Date de retarit</string>
+    <string name="pickup_time">Heure de retrait</string>
+    <string name="comment">Commentaires</string>
 </resources>
