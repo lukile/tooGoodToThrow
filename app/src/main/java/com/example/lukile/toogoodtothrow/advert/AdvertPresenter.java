@@ -7,6 +7,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
+import com.androidnetworking.interfaces.StringRequestListener;
 import com.example.lukile.toogoodtothrow.category.ICategoryView;
 import com.example.lukile.toogoodtothrow.model.Advert;
 import com.example.lukile.toogoodtothrow.model.Category;
@@ -17,6 +18,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -88,7 +90,42 @@ public class AdvertPresenter {
                         Log.e("on error : ",anError.toString());
                     }
                 });
+    }
 
+    public void updateAdvert (Advert advert){
+        String baseUrl = "http://10.0.2.2:8080/";
+        JSONObject userJson = new JSONObject();
+        try {
+            userJson.put("id", advert.getId());
+            userJson.put("name", advert.getName());
+            userJson.put("quantity", advert.getQuantity());
+            userJson.put("state", 1);
+            userJson.put("date_lapsing", advert.getDateLapsing());
+            userJson.put("end_date", advert.getEndDate());
+            userJson.put("start_time_slot", advert.getStartTimeSlot());
+            userJson.put("end_time_slot", advert.getEndTimeSlot());
+            userJson.put("comment", advert.getComment());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        AndroidNetworking.post(baseUrl + "advert/update")
+                .addJSONObjectBody(userJson)
+                .setTag("Inscription")
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        //
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        anError.printStackTrace();
+                    }
+                });
 
     }
 }
