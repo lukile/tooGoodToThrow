@@ -1,4 +1,4 @@
-package com.example.lukile.toogoodtothrow.category;
+package com.example.lukile.toogoodtothrow.advert;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,15 +15,16 @@ import android.widget.TextView;
 
 import com.example.lukile.toogoodtothrow.OnBottomReachedListener;
 import com.example.lukile.toogoodtothrow.R;
-import com.example.lukile.toogoodtothrow.advert.AdvertActivity;
-import com.example.lukile.toogoodtothrow.login.LoginActivity;
+import com.example.lukile.toogoodtothrow.category.CategoryActivity;
+import com.example.lukile.toogoodtothrow.category.CategoryAdapter;
+import com.example.lukile.toogoodtothrow.model.Advert;
 import com.example.lukile.toogoodtothrow.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class AdvertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
 
@@ -37,24 +38,24 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private boolean isLoading;
     private boolean shouldListenToOnBottomReached = true;
 
-    private List<String> data = new ArrayList<>();
-    private OnItemClickListener listener;
+    private List<Advert> data = new ArrayList<>();
+    private AdvertAdapter.OnItemClickListener listener;
 
     public interface OnItemClickListener {
-        void onItemClick(String item);
+        void onItemClick(Advert item);
     }
 
 
-    public CategoryAdapter(List<String> data, OnItemClickListener listener){
+    public AdvertAdapter(List<Advert> data, AdvertAdapter.OnItemClickListener listener){
         this.data = data;
         this.listener = listener;
     }
 
 
-    public CategoryAdapter(Activity activity) {
+    public AdvertAdapter(Activity activity) {
         this.activity = activity;
 
-        RecyclerView mRecyclerView = ((CategoryActivity) activity).findViewById(R.id.rcv_category);
+        RecyclerView mRecyclerView = ((AdvertActivity) activity).findViewById(R.id.rcv_advert);
         final LinearLayoutManager layoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -77,56 +78,57 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
 
-        if(holder instanceof CategoryViewHolder) {
-            final CategoryViewHolder viewHolder = (CategoryViewHolder) holder;
-            viewHolder.bind(data.get(position), new OnItemClickListener() {
+        if(holder instanceof AdvertAdapter.AdvertViewHolder) {
+            final AdvertAdapter.AdvertViewHolder viewHolder = (AdvertAdapter.AdvertViewHolder) holder;
+            viewHolder.bind(data.get(position), new AdvertAdapter.OnItemClickListener() {
                 @Override
-                public void onItemClick(String item) {
-                    activity.startActivity(new Intent(activity, AdvertActivity.class));
-                    Log.e("merci yoda", item);
+                public void onItemClick(Advert item) {
+                    Log.e("merci yoda", item.toString());
+
+
                 }
             });
 
-            final ImageView imvCharacter = viewHolder.imageView;
+            final ImageView imvAdvert = viewHolder.imageView;
 
-            final String categoryName = data.get(position);
+            final String advertName = data.get(position).getName();
 
             final int imageUrl;
 
-            if (categoryName.equals("Fruits et légumes")) {
+            if (advertName.equals("Fruits et légumes")) {
                 imageUrl = R.drawable.fruit;
-            } else if (categoryName.equals("Produits laitiers")) {
+            } else if (advertName.equals("Produits laitiers")) {
                 imageUrl = R.drawable.milk;
-            } else if (categoryName.equals("Plats cuisinés")) {
+            } else if (advertName.equals("Plats cuisinés")) {
                 imageUrl = R.drawable.cooked_food;
-            }else if (categoryName.equals("Féculents")) {
+            }else if (advertName.equals("Féculents")) {
                 imageUrl = R.drawable.starchy;
-            }else if (categoryName.equals("Bonbons et sucreries")) {
+            }else if (advertName.equals("Bonbons et sucreries")) {
                 imageUrl = R.drawable.candy;
-            } else if (categoryName.equals("Boissons")) {
+            } else if (advertName.equals("Boissons")) {
                 imageUrl = R.drawable.drink;
-            } else if (categoryName.equals("Viandes, poissons et oeuf")) {
+            } else if (advertName.equals("Viandes, poissons et oeuf")) {
                 imageUrl = R.drawable.vpo;
-            } else if (categoryName.equals("Surgelés")) {
+            } else if (advertName.equals("Surgelés")) {
                 imageUrl = R.drawable.frozen;
-            } else if (categoryName.equals("Epices")) {
+            } else if (advertName.equals("Epices")) {
                 imageUrl = R.drawable.epice;
-            } else if (categoryName.equals("Alimentation bébé")) {
+            } else if (advertName.equals("Alimentation bébé")) {
                 imageUrl = R.drawable.baby;
-            } else if (categoryName.equals("Thé, café et chocolat")) {
+            } else if (advertName.equals("Thé, café et chocolat")) {
                 imageUrl = R.drawable.coffee;
             } else {
                 imageUrl =  R.drawable.fruit;
             }
 
 
-            viewHolder.textView.setText(categoryName);
+            viewHolder.textView.setText(advertName);
 
             Picasso.get()
                     .load(imageUrl)
                     .transform(new CircleTransform())
                     .error(R.drawable.ic_launcher_background)
-                    .into(imvCharacter);
+                    .into(imvAdvert);
 
         }
 
@@ -144,20 +146,20 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
 
-    static class CategoryViewHolder extends RecyclerView.ViewHolder {
+    static class AdvertViewHolder extends RecyclerView.ViewHolder {
 
         TextView textView;
         ImageView imageView;
 
-        CategoryViewHolder(View itemView) {
+        AdvertViewHolder(View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.category);
-            imageView = itemView.findViewById(R.id.img_category);
+            textView = itemView.findViewById(R.id.advertName);
+            imageView = itemView.findViewById(R.id.img_advert);
         }
 
-        public void bind(final String item, final OnItemClickListener listener) {
+        public void bind(final Advert item, final AdvertAdapter.OnItemClickListener listener) {
 
-        itemView.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     listener.onItemClick(item);
                 }
@@ -176,16 +178,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(viewType == VIEW_TYPE_ITEM) {
-            View view = LayoutInflater.from(activity.getBaseContext()).inflate(R.layout.item_category, parent, false);
-            return new CategoryViewHolder(view);
+            View view = LayoutInflater.from(activity.getBaseContext()).inflate(R.layout.item_advert, parent, false);
+            return new AdvertAdapter.AdvertViewHolder(view);
         } else if (viewType == VIEW_TYPE_LOADING) {
             View view = LayoutInflater.from(activity.getBaseContext()).inflate(R.layout.loading_item, parent, false);
-            return new LoadingViewHolder(view);
+            return new AdvertAdapter.LoadingViewHolder(view);
         }
         return null;
     }
 
-    public void resetData(List<String> items) {
+    public void resetData(List<Advert> items) {
         this.data = items;
         notifyDataSetChanged();
     }
@@ -197,4 +199,5 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void setShouldListenToOnBottomReached(boolean b) {
         shouldListenToOnBottomReached = b;
     }
+
 }
