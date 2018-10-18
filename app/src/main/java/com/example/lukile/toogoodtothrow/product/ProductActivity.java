@@ -47,7 +47,7 @@ public class ProductActivity extends AppCompatActivity {
 
                 DatePickerDialog mDatePicker=new DatePickerDialog(ProductActivity.this, new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
-                        editTextExpiryDate.setText(selectedday + "/" + selectedmonth + "/" + selectedyear);
+                        editTextExpiryDate.setText(selectedday + ":" + selectedmonth + ":" + selectedyear);
                     }
                 },mYear, mMonth, mDay);
                 mDatePicker.setTitle("Select date");
@@ -66,7 +66,7 @@ public class ProductActivity extends AppCompatActivity {
 
                 DatePickerDialog mDatePicker=new DatePickerDialog(ProductActivity.this, new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
-                        editTextPickupDate.setText(selectedday + "/" + selectedmonth + "/" + selectedyear);
+                        editTextPickupDate.setText(selectedday + ":" + selectedmonth + ":" + selectedyear);
                     }
                 },mYear, mMonth, mDay);
                 mDatePicker.setTitle("Select date");
