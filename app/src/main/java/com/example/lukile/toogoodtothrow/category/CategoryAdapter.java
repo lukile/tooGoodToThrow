@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
 
@@ -34,6 +35,18 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private boolean shouldListenToOnBottomReached = true;
 
     private List<String> data = new ArrayList<>();
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(String item);
+    }
+
+
+    public CategoryAdapter(List<String> data, OnItemClickListener listener){
+        this.data = data;
+        this.listener = listener;
+    }
+
 
     public CategoryAdapter(Activity activity) {
         this.activity = activity;
@@ -59,8 +72,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
+
         if(holder instanceof CategoryViewHolder) {
             final CategoryViewHolder viewHolder = (CategoryViewHolder) holder;
+            viewHolder.bind(data.get(position), new OnItemClickListener() {
+                @Override
+                public void onItemClick(String item) {
+                    Log.e("merci yoda", item);
+                }
+            });
 
             final ImageView imvCharacter = viewHolder.imageView;
 
@@ -68,13 +89,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             final int imageUrl;
 
-
             if (categoryName.equals("Fruits et légumes")) {
                 imageUrl = R.drawable.fruit;
             } else if (categoryName.equals("Produits laitiers")) {
                 imageUrl = R.drawable.milk;
             } else if (categoryName.equals("Plats cuisinés")) {
-                imageUrl = R.drawable.cookedFood;
+                imageUrl = R.drawable.cooked_food;
             }else if (categoryName.equals("Féculents")) {
                 imageUrl = R.drawable.starchy;
             }else if (categoryName.equals("Bonbons et sucreries")) {
@@ -103,10 +123,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     .transform(new CircleTransform())
                     .error(R.drawable.ic_launcher_background)
                     .into(imvCharacter);
+
         }
+
+        Log.e("codopfshjsodjfmojqsmù", data.get(position));
+
 
 
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -117,7 +143,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return data != null ? data.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM :0;
     }
 
-    class CategoryViewHolder extends RecyclerView.ViewHolder {
+
+    static class CategoryViewHolder extends RecyclerView.ViewHolder {
 
         TextView textView;
         ImageView imageView;
@@ -126,6 +153,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             super(itemView);
             textView = itemView.findViewById(R.id.category);
             imageView = itemView.findViewById(R.id.img_category);
+        }
+
+        public void bind(final String item, final OnItemClickListener listener) {
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
         }
     }
 

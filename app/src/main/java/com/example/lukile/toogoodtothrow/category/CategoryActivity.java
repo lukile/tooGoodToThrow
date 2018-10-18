@@ -1,7 +1,7 @@
 package com.example.lukile.toogoodtothrow.category;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,6 +16,7 @@ public class CategoryActivity extends AppCompatActivity implements ICategoryView
     RecyclerView rcvCategory;
 
     private CategoryAdapter adapter;
+    private CategoryPresenter categoryPresenter;
 
     private boolean shouldLoadMore;
 
@@ -28,17 +29,17 @@ public class CategoryActivity extends AppCompatActivity implements ICategoryView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
+        categoryPresenter = new CategoryPresenter((ICategoryView) this);
+
         rcvCategory = findViewById(R.id.rcv_category);
 
-        categoryValues.add("Fruits et légumes");
-        categoryValues.add("Produits laitiers");
+        //categoryValues.add("Fruits et légumes");
+        //categoryValues.add("Produits laitiers");
 
-
+        categoryPresenter.allCategories();
 
         rcvCategory.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CategoryAdapter(this);
-        printCategory(categoryValues);
-
         rcvCategory.setAdapter(adapter);
     }
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".login.LoginActivity">
 
     <TextView
         android:id="@+id/txtViex"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:inputType="text"
-            android:text="@string/email"
+            android:text="jdeyehe@gmail.com"
             android:layout_marginTop="110sp"
             android:layout_marginBottom="50sp" />
 
@@ -36,8 +36,8 @@
             android:id="@+id/pwd_input"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:inputType="text"
-            android:text="@string/password"
+            android:inputType="textPassword"
+            android:text="toto"
             android:layout_marginBottom="70sp" />
 
         <Button
