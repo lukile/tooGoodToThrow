@@ -1,128 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CategoryActivity"
-    android:background="@drawable/background_food"
-    >
+    tools:context=".category.CategoryActivity"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/category"
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_category"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/categories"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_marginStart="125dp"
-        />
-
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <RadioButton
-                android:id="@+id/fruitsAndVegetables"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="74dp"
-                android:text="@string/fruits_and_vegetables"
-                android:textSize="20sp"
-                android:layout_marginBottom="10dp"
-                android:textStyle="bold" />
-
-            <RadioButton
-                android:id="@+id/milkProduct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/milk_products"
-                android:textSize="20sp"
-                android:layout_marginBottom="10dp"
-                android:textStyle="bold" />
-
-            <RadioButton
-                android:id="@+id/starchy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/starchy"
-                android:textSize="20sp"
-                android:layout_marginBottom="10dp"
-                android:textStyle="bold" />
-
-            <RadioButton
-                android:id="@+id/candyAndSweetThings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/candy_and_sweet"
-                android:textSize="20sp"
-                android:layout_marginBottom="10dp"
-                android:textStyle="bold" />
-
-            <RadioButton
-                android:id="@+id/drinks"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/drinks"
-                android:textSize="20sp"
-                android:layout_marginBottom="10dp"
-                android:textStyle="bold" />
-
-            <RadioButton
-                android:id="@+id/meatFish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/meat_and_fish"
-                android:textSize="20sp"
-                android:layout_marginBottom="10dp"
-                android:textStyle="bold" />
-
-            <RadioButton
-                android:id="@+id/frozen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/frozen"
-                android:textSize="20sp"
-                android:layout_marginBottom="10dp"
-                android:textStyle="bold" />
-
-            <RadioButton
-                android:id="@+id/babyFeeding"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/baby_feeding"
-                android:textSize="20sp"
-                android:layout_marginBottom="10dp"
-                android:textStyle="bold" />
-
-            <RadioButton
-                android:id="@+id/teaCoffeeChocolate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tea_coffee_chocolate"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </RadioGroup>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/button"
-        android:text="@string/validate_button"
-        android:textColor="#ffffff"
-        android:textSize="17sp"
-        android:textStyle="bold"
-
-
-        app:layout_constraintTop_toBottomOf="@id/radioGroup"
-        tools:layout_editor_absoluteX="148dp" /> -->
-
-    
+        android:paddingBottom="56dp">
+    </android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>

@@ -53,7 +53,7 @@ public class SignupActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s)  {
-                if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText()).matches()) {
+                if (!android.util.Patterns.EMAIL_ADDRESS.matcher(emailEdt.getText()).matches()) {
                     emailEdt.setError("Email incorrect");
                 }
             }
