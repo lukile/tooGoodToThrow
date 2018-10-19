@@ -4,28 +4,43 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 
+import com.example.lukile.toogoodtothrow.OnBottomReachedListener;
 import com.example.lukile.toogoodtothrow.R;
+import com.example.lukile.toogoodtothrow.model.Category;
 
 import java.util.Calendar;
+import java.util.List;
 
 
 public class ProductActivity extends AppCompatActivity {
+    private ProductPresenter productPresenter;
 
     EditText editTextExpiryDate;
     EditText editTextPickupDate;
     EditText editTextPickupTimeStart;
     EditText editTextPickupTimeEnd;
     Button buttonValidProduct;
+    Spinner spinnerProduct;
+    RadioGroup categoryChoice;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        productPresenter = new ProductPresenter();
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 
@@ -34,6 +49,8 @@ public class ProductActivity extends AppCompatActivity {
         editTextPickupDate = findViewById(R.id.pickup_date_edt);
         editTextPickupTimeStart = findViewById(R.id.pickup_time_start_edt);
         editTextPickupTimeEnd = findViewById(R.id.pickup_time_end_edt);
+        spinnerProduct = findViewById(R.id.product_choice_spinner);
+        categoryChoice = findViewById(R.id.category_choice_rg);
 
 
         editTextExpiryDate.setOnClickListener(new View.OnClickListener() {
@@ -120,5 +137,41 @@ public class ProductActivity extends AppCompatActivity {
                 //
             }
         });
+
+        categoryChoice.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                int radioButtonID = categoryChoice.getCheckedRadioButtonId();
+                View radioButton = categoryChoice.findViewById(radioButtonID);
+                int idx = categoryChoice.indexOfChild(radioButton);
+//                RadioButton rb = (RadioButton) categoryChoice.getChildAt(idx);
+//                String selectedtext = rb.getText().toString();
+
+                int categoryId = idx + 1;
+
+
+
+                productPresenter.getProductFromCategory(categoryId);
+
+                // faire appel http /products/get.../categoryId
+
+
+                switch (i) {
+                    case R.id.fruits_and_vegetables:
+                        System.out.println("i");
+                        //populate(productPresenter.getProductFromCategory());
+                        break;
+                }
+            }
+        });
     }
+
+
+    public void populate(int categoryId) {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, categoryId, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerProduct.setAdapter(adapter);
+    }
+
+
 }
