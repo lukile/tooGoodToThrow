@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        Intent myIntent = new Intent(MainActivity.this, CategoryActivity.class);
+        Intent myIntent = new Intent(MainActivity.this, LoginActivity.class);
         MainActivity.this.startActivity(myIntent);
     }
 

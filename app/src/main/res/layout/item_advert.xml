@@ -8,10 +8,10 @@
 
     <ImageView
         android:id="@+id/img_advert"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="16dp"
+        android:background="@drawable/ic_launcher_background"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
 
@@ -20,21 +20,26 @@
         android:id="@+id/advertName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        tools:text="text"
-        app:layout_constraintBottom_toBottomOf="@id/img_advert"
-        app:layout_constraintLeft_toRightOf="@id/img_advert"
-        app:layout_constraintTop_toTopOf="@id/img_advert" />
+        tools:text="Title"
+        android:textSize="24sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_advert" />
 
     <TextView
-        android:id="@+id/advertdate"
+        android:id="@+id/advertdistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        tools:text="text"
-        app:layout_constraintBottom_toBottomOf="@id/advertName"
-        app:layout_constraintLeft_toRightOf="@id/img_advert"
-        app:layout_constraintTop_toTopOf="@id/img_advert" />
+        tools:text="A **** km"
+        app:layout_constraintTop_toBottomOf="@id/advertName"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+    <TextView
+        android:id="@+id/adverttime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Disponible entre 12:00 et 15:00 heure"
+        app:layout_constraintTop_toBottomOf="@id/advertName"
+        app:layout_constraintRight_toRightOf="parent"/>
 
 
     <View

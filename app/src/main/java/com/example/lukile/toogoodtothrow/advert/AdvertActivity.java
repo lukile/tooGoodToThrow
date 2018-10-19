@@ -38,7 +38,14 @@ public class AdvertActivity extends AppCompatActivity implements AdvertView{
         //categoryValues.add("Fruits et légumes");
         //categoryValues.add("Produits laitiers");
 
-        advertPresenter.allAdvert();
+        Bundle bundle = getIntent().getExtras();
+
+        if (bundle != null) {
+            Log.e("id_category", String.valueOf(bundle.getInt("id_category")));
+            advertPresenter.allAdvert(bundle.getInt("id_category"));
+           // advertPresenter.allAdvert();
+        }
+
 
         rcvAdvert.setLayoutManager(new LinearLayoutManager(this));
         adapter = new AdvertAdapter(this);
@@ -65,5 +72,10 @@ public class AdvertActivity extends AppCompatActivity implements AdvertView{
             }
         });
 
+    }
+
+    @Override
+    public void printOneAdvert(Advert advert) {
+        //
     }
 }

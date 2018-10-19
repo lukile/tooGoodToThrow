@@ -1,12 +1,11 @@
-package com.example.lukile.toogoodtothrow.category;
+package com.example.lukile.toogoodtothrow.product;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
-import com.example.lukile.toogoodtothrow.model.Category;
+import com.example.lukile.toogoodtothrow.model.Product;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -17,21 +16,14 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryPresenter {
-    ICategoryView categoryView;
+public class ProductPresenter {
 
-    public CategoryPresenter(ICategoryView view){
-        categoryView = view;
-    }
+    public void getProductFromCategory(int categoryId) {
+        final List<Product> productList = new ArrayList<>();
 
-    public void allCategories(){
-        final List<Category> categoriessList = new ArrayList<>();
+        String baseUrl = "http://192.168.1.14:8080/";
 
-
-        String baseUrl = "http://10.0.2.2:8080/";
-
-
-        AndroidNetworking.get(baseUrl+"category/all")
+        AndroidNetworking.get(baseUrl+"product/getProductByCat/"+categoryId)
                 .setTag("Connect")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
@@ -41,14 +33,12 @@ public class CategoryPresenter {
                         JsonParser parser = new JsonParser();
                         JsonElement arr = parser.parse(array.toString());
                         Gson gson = new GsonBuilder().create();
-                        Category[] results = gson.fromJson(arr, Category[].class);
-                        Log.d( "fsdds","name : " + results[0].getName());
+                        Product[] results = gson.fromJson(arr, Product[].class);
+                        Log.d("Product : ", "name : " + results[0].getName());
 
-                        for (Category category : results) {
-                            categoriessList.add(category);
+                        for (Product product : results) {
+                            productList.add(product);
                         }
-
-                        categoryView.printCategory(categoriessList);
                     }
 
                     @Override
@@ -56,7 +46,7 @@ public class CategoryPresenter {
                         Log.e("on error : ",anError.toString());
                     }
                 });
-
-
     }
+
+
 }

@@ -86,15 +86,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/drinks"/>
             <RadioButton
-                android:id="@+id/frozen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/frozen"/>
-            <RadioButton
                 android:id="@+id/vop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/meat_and_fish"/>
+            <RadioButton
+                android:id="@+id/frozen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/frozen"/>
             <RadioButton
                 android:id="@+id/grocery"
                 android:layout_width="wrap_content"

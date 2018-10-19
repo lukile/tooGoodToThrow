@@ -4,21 +4,27 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
+import com.example.lukile.toogoodtothrow.OnBottomReachedListener;
 import com.example.lukile.toogoodtothrow.R;
+import com.example.lukile.toogoodtothrow.model.Category;
 
 import java.util.Calendar;
+import java.util.List;
 
 
 public class ProductActivity extends AppCompatActivity {
+    private ProductPresenter productPresenter;
 
     EditText editTextExpiryDate;
     EditText editTextPickupDate;
@@ -28,9 +34,11 @@ public class ProductActivity extends AppCompatActivity {
     Spinner spinnerProduct;
     RadioGroup categoryChoice;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        productPresenter = new ProductPresenter();
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 
@@ -46,16 +54,16 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Calendar mcurrentDate=Calendar.getInstance();
+                Calendar mcurrentDate = Calendar.getInstance();
                 int mYear = mcurrentDate.get(Calendar.YEAR);
-                int mMonth=mcurrentDate.get(Calendar.MONTH);
-                int mDay=mcurrentDate.get(Calendar.DAY_OF_MONTH);
+                int mMonth = mcurrentDate.get(Calendar.MONTH);
+                int mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog mDatePicker=new DatePickerDialog(ProductActivity.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog mDatePicker = new DatePickerDialog(ProductActivity.this, new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
                         editTextExpiryDate.setText(selectedday + ":" + selectedmonth + ":" + selectedyear);
                     }
-                },mYear, mMonth, mDay);
+                }, mYear, mMonth, mDay);
                 mDatePicker.setTitle("Select date");
                 mDatePicker.show();
 
@@ -65,16 +73,16 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Calendar mcurrentDate=Calendar.getInstance();
+                Calendar mcurrentDate = Calendar.getInstance();
                 int mYear = mcurrentDate.get(Calendar.YEAR);
-                int mMonth=mcurrentDate.get(Calendar.MONTH);
-                int mDay=mcurrentDate.get(Calendar.DAY_OF_MONTH);
+                int mMonth = mcurrentDate.get(Calendar.MONTH);
+                int mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog mDatePicker=new DatePickerDialog(ProductActivity.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog mDatePicker = new DatePickerDialog(ProductActivity.this, new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
                         editTextPickupDate.setText(selectedday + ":" + selectedmonth + ":" + selectedyear);
                     }
-                },mYear, mMonth, mDay);
+                }, mYear, mMonth, mDay);
                 mDatePicker.setTitle("Select date");
                 mDatePicker.show();
 
@@ -85,14 +93,14 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Calendar mcurrenttime=Calendar.getInstance();
+                Calendar mcurrenttime = Calendar.getInstance();
                 final int mHour = mcurrenttime.get(Calendar.HOUR_OF_DAY);
                 int mMinute = mcurrenttime.get(Calendar.MINUTE);
 
                 TimePickerDialog timePickerDialog;
                 timePickerDialog = new TimePickerDialog(ProductActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute){
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         editTextPickupTimeStart.setText(hourOfDay + ":" + minute);
                     }
                 }, mHour, mMinute, true);
@@ -104,14 +112,14 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Calendar mcurrenttime=Calendar.getInstance();
+                Calendar mcurrenttime = Calendar.getInstance();
                 final int mHour = mcurrenttime.get(Calendar.HOUR_OF_DAY);
                 int mMinute = mcurrenttime.get(Calendar.MINUTE);
 
                 TimePickerDialog timePickerDialog;
                 timePickerDialog = new TimePickerDialog(ProductActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute){
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         editTextPickupTimeEnd.setText(hourOfDay + ":" + minute);
                     }
                 }, mHour, mMinute, true);
@@ -163,15 +171,17 @@ public class ProductActivity extends AppCompatActivity {
                         break;
                     case R.id.tea_coffee_chocolate:
                         populateSpinner(R.array.tea_coffee_chocolate);
-                        break;
                 }
-            }
-        });
-    }
 
-    public void populateSpinner(int array) {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerProduct.setAdapter(adapter);
+
+            }
+
+            public void populateSpinner(int array) {
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(ProductActivity.this, array, android.R.layout.simple_spinner_item);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerProduct.setAdapter(adapter);
+            }
+
+        });
     }
 }

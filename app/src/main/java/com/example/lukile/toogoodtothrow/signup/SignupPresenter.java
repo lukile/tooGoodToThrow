@@ -14,27 +14,28 @@ public class SignupPresenter {
     private static final String TAG = "SignupPresenter";
 
     //constructeur
-    public SignupPresenter(SignupView signupView) {
-        this.signupView = signupView;
+    public SignupPresenter(SignupView view) {
+        this.signupView = view;
     }
 
     public void signup (String firstname, String lastname, String
             password, String confirmPassword, String email){
-        String baseUrl = "http://10.0.2.2:3000/";
+        String baseUrl = "http://10.0.2.2:8080/";
         JSONObject userJson = new JSONObject();
         try {
             userJson.put("firstname", firstname);
             userJson.put("lastname", lastname);
             userJson.put("password", password);
-            userJson.put("confirmPassword", confirmPassword);
-            userJson.put("email", email);
+            userJson.put("password2", confirmPassword);
+            userJson.put("mail", email);
+            userJson.put("adress", "test");
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 
-        AndroidNetworking.post(baseUrl + "auth/signup")
+        AndroidNetworking.post(baseUrl + "user/add")
                 .addJSONObjectBody(userJson)
                 .setTag("Inscription")
                 .build()
