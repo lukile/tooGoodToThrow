@@ -34,8 +34,6 @@ public class ProductActivity extends AppCompatActivity {
     Spinner spinnerProduct;
     RadioGroup categoryChoice;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         productPresenter = new ProductPresenter();
@@ -52,21 +50,20 @@ public class ProductActivity extends AppCompatActivity {
         spinnerProduct = findViewById(R.id.product_choice_spinner);
         categoryChoice = findViewById(R.id.category_choice_rg);
 
-
         editTextExpiryDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Calendar mcurrentDate=Calendar.getInstance();
+                Calendar mcurrentDate = Calendar.getInstance();
                 int mYear = mcurrentDate.get(Calendar.YEAR);
-                int mMonth=mcurrentDate.get(Calendar.MONTH);
-                int mDay=mcurrentDate.get(Calendar.DAY_OF_MONTH);
+                int mMonth = mcurrentDate.get(Calendar.MONTH);
+                int mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog mDatePicker=new DatePickerDialog(ProductActivity.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog mDatePicker = new DatePickerDialog(ProductActivity.this, new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
                         editTextExpiryDate.setText(selectedday + ":" + selectedmonth + ":" + selectedyear);
                     }
-                },mYear, mMonth, mDay);
+                }, mYear, mMonth, mDay);
                 mDatePicker.setTitle("Select date");
                 mDatePicker.show();
 
@@ -76,16 +73,16 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Calendar mcurrentDate=Calendar.getInstance();
+                Calendar mcurrentDate = Calendar.getInstance();
                 int mYear = mcurrentDate.get(Calendar.YEAR);
-                int mMonth=mcurrentDate.get(Calendar.MONTH);
-                int mDay=mcurrentDate.get(Calendar.DAY_OF_MONTH);
+                int mMonth = mcurrentDate.get(Calendar.MONTH);
+                int mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog mDatePicker=new DatePickerDialog(ProductActivity.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog mDatePicker = new DatePickerDialog(ProductActivity.this, new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
                         editTextPickupDate.setText(selectedday + ":" + selectedmonth + ":" + selectedyear);
                     }
-                },mYear, mMonth, mDay);
+                }, mYear, mMonth, mDay);
                 mDatePicker.setTitle("Select date");
                 mDatePicker.show();
 
@@ -96,14 +93,14 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Calendar mcurrenttime=Calendar.getInstance();
+                Calendar mcurrenttime = Calendar.getInstance();
                 final int mHour = mcurrenttime.get(Calendar.HOUR_OF_DAY);
                 int mMinute = mcurrenttime.get(Calendar.MINUTE);
 
                 TimePickerDialog timePickerDialog;
                 timePickerDialog = new TimePickerDialog(ProductActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute){
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         editTextPickupTimeStart.setText(hourOfDay + ":" + minute);
                     }
                 }, mHour, mMinute, true);
@@ -115,14 +112,14 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Calendar mcurrenttime=Calendar.getInstance();
+                Calendar mcurrenttime = Calendar.getInstance();
                 final int mHour = mcurrenttime.get(Calendar.HOUR_OF_DAY);
                 int mMinute = mcurrenttime.get(Calendar.MINUTE);
 
                 TimePickerDialog timePickerDialog;
                 timePickerDialog = new TimePickerDialog(ProductActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute){
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         editTextPickupTimeEnd.setText(hourOfDay + ":" + minute);
                     }
                 }, mHour, mMinute, true);
@@ -141,37 +138,50 @@ public class ProductActivity extends AppCompatActivity {
         categoryChoice.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                int radioButtonID = categoryChoice.getCheckedRadioButtonId();
-                View radioButton = categoryChoice.findViewById(radioButtonID);
-                int idx = categoryChoice.indexOfChild(radioButton);
-//                RadioButton rb = (RadioButton) categoryChoice.getChildAt(idx);
-//                String selectedtext = rb.getText().toString();
-
-                int categoryId = idx + 1;
-
-
-
-                productPresenter.getProductFromCategory(categoryId);
-
-                // faire appel http /products/get.../categoryId
-
-
                 switch (i) {
                     case R.id.fruits_and_vegetables:
-                        System.out.println("i");
-                        //populate(productPresenter.getProductFromCategory());
+                        populateSpinner(R.array.fruits_and_vegetable_arr);
                         break;
+                    case R.id.milk_product:
+                        populateSpinner(R.array.milk_product);
+                        break;
+                    case R.id.cooked_food:
+                        populateSpinner(R.array.cooked_food);
+                        break;
+                    case R.id.starchy:
+                        populateSpinner(R.array.starchy);
+                        break;
+                    case R.id.candy_and_sweet:
+                        populateSpinner(R.array.candy_and_sweet);
+                        break;
+                    case R.id.drink:
+                        populateSpinner(R.array.drink);
+                        break;
+                    case R.id.frozen:
+                        populateSpinner(R.array.frozen);
+                        break;
+                    case R.id.vop:
+                        populateSpinner(R.array.vop);
+                        break;
+                    case R.id.grocery:
+                        populateSpinner(R.array.grocery);
+                        break;
+                    case R.id.baby_food:
+                        populateSpinner(R.array.baby_food);
+                        break;
+                    case R.id.tea_coffee_chocolate:
+                        populateSpinner(R.array.tea_coffee_chocolate);
                 }
+
+
             }
+
+            public void populateSpinner(int array) {
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(ProductActivity.this, array, android.R.layout.simple_spinner_item);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerProduct.setAdapter(adapter);
+            }
+
         });
     }
-
-
-    public void populate(int categoryId) {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, categoryId, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerProduct.setAdapter(adapter);
-    }
-
-
 }

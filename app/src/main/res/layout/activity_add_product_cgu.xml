@@ -31,7 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80sp"
         android:textSize="20sp"
-        android:text="@string/add_product_text_cgu"/>
+        android:text="@string/add_product_text_cgu"
+        android:paddingBottom="56dp"/>
 
 
 
