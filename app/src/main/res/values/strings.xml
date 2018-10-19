@@ -30,10 +30,8 @@
     <string name="accepted_rules">J\'accepte les conditions d\'utilisation de TooGoodToThrow</string>
     <string name="title_rules_app_tv">Conditions TooGoodToThrow</string>
     <string name="text_rules_app">Dans la mesure ou l\'application est d\'ordre solidaire, la qualitée des produits ne peut être certifiée. Les utilisateurs doivent donc rester vigilents et ne pas prendre de risque de santé. En cas de doute sur la nourriture reçue, n\'acceptez pas le produit.
-
-ToGoodToThrow ne peut être tenu responsable de la mauvaise qualitée de la nourriture offerte.
-
-Je certifie également être majeur et ne pas être sous tutelle, ne pas vendre d\'alcool ni de produits stupéfiants.
+\n\nToGoodToThrow ne peut être tenu responsable de la mauvaise qualitée de la nourriture offerte.
+\n\nJe certifie également être majeur et ne pas être sous tutelle, ne pas vendre d\'alcool ni de produits stupéfiants.
 
 </string>
     <string name="title_application">TooGoodToThrow</string>
