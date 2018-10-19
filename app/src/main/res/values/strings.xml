@@ -53,4 +53,70 @@ Je certifie également être majeur et ne pas être sous tutelle, ne pas vendre 
     <string name="pickup_date">Date de retarit</string>
     <string name="pickup_time">Heure de retrait</string>
     <string name="comment">Commentaires</string>
+
+    <string-array name="fruits_and_vegetable_arr">
+        <item>--Choix--</item>
+        <item>Pomme</item>
+        <item>Poireau</item>
+    </string-array>
+
+    <string-array name="milk_product">
+        <item>--Choix--</item>
+        <item>Fromage de brebis</item>
+        <item>Yahourt 0%</item>
+    </string-array>
+
+    <string-array name="cooked_food">
+        <item>--Choix--</item>
+        <item>Chili</item>
+        <item>Pates carbonara</item>
+    </string-array>
+
+    <string-array name="starchy">
+        <item>--Choix--</item>
+        <item>Riz</item>
+        <item>Quinoa</item>
+    </string-array>
+
+    <string-array name="candy_and_sweet">
+        <item>--Choix--</item>
+        <item>Fraise tagada</item>
+        <item>Pepito</item>
+    </string-array>
+
+    <string-array name="drink">
+        <item>--Choix--</item>
+        <item>Coca-cola</item>
+        <item>Perrier</item>
+    </string-array>
+
+    <string-array name="frozen">
+        <item>--Choix--</item>
+        <item>Petits pois</item>
+        <item>Mr Freeze</item>>
+    </string-array>
+
+    <string-array name="vop">
+        <item>--Choix--</item>
+        <item>Saumon</item>
+        <item>Oeuf</item>
+    </string-array>
+
+    <string-array name="grocery">
+        <item>--Choix--</item>
+        <item>Safran</item>
+        <item>Thym</item>
+    </string-array>
+
+    <string-array name="baby_food">
+        <item>--Choix--</item>
+        <item>Petit pot carotte</item>
+        <item>Petit pot chou</item>
+    </string-array>
+
+    <string-array name="tea_coffee_chocolate">
+        <item>--Choix--</item>
+        <item>Nesquik</item>
+        <item>Grand Arabica</item>
+    </string-array>
 </resources>
