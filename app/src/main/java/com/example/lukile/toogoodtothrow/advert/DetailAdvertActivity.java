@@ -9,14 +9,19 @@ import android.widget.TextView;
 
 import com.example.lukile.toogoodtothrow.R;
 import com.example.lukile.toogoodtothrow.model.Advert;
+import com.example.lukile.toogoodtothrow.model.User;
+import com.example.lukile.toogoodtothrow.user.UserPresenter;
+import com.example.lukile.toogoodtothrow.user.UserView;
 
 import org.w3c.dom.Text;
 
 import java.util.List;
 
-public class DetailAdvertActivity extends AppCompatActivity implements AdvertView {
+public class DetailAdvertActivity extends AppCompatActivity implements AdvertView, UserView {
 
     private AdvertPresenter advertPresenter;
+    private UserPresenter userPresenter;
+
     TextView textViewEmail;
     TextView textViewDatePicking;
     TextView textViewComment;
@@ -31,6 +36,9 @@ public class DetailAdvertActivity extends AppCompatActivity implements AdvertVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_advert);
         advertPresenter = new AdvertPresenter((AdvertView) this);
+        userPresenter = new UserPresenter((UserView) this);
+
+
         textViewEmail = findViewById(R.id.email_user_advert_tv);
         textViewDatePicking = findViewById(R.id.date_picking_tv);
         textViewComment = findViewById(R.id.comment_advert_tv);
@@ -38,9 +46,15 @@ public class DetailAdvertActivity extends AppCompatActivity implements AdvertVie
         Bundle bundle = getIntent().getExtras();
 
         if (bundle != null) {
-            Log.e("advert id", String.valueOf(bundle.getInt("advert_id")));
             advertPresenter.oneAdvert(bundle.getInt("advert_id"));
+            userPresenter.getUser(bundle.getString("user_id"));
+
         }
+
+
+
+
+
 
         buttonReserved.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,5 +75,11 @@ public class DetailAdvertActivity extends AppCompatActivity implements AdvertVie
         this.advert = advertPrint;
         textViewComment.setText(advertPrint.getComment());
         textViewDatePicking.setText(advertPrint.getDateLapsing());
+    }
+
+    @Override
+    public void printEmail(String email) {
+        Log.e("emaul user", email);
+        textViewEmail.setText(email);
     }
 }

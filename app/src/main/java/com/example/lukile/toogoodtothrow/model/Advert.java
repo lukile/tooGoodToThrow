@@ -1,5 +1,7 @@
 package com.example.lukile.toogoodtothrow.model;
 
+import android.content.Intent;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -33,10 +35,10 @@ public class Advert {
     private String comment;
     @SerializedName("id_user")
     @Expose
-    private Object idUser;
+    private Integer idUser;
     @SerializedName("id_product")
     @Expose
-    private Object idProduct;
+    private Integer idProduct;
 
     public Integer getId() {
         return id;
@@ -110,19 +112,19 @@ public class Advert {
         this.comment = comment;
     }
 
-    public Object getIdUser() {
+    public Integer getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Object idUser) {
+    public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
 
-    public Object getIdProduct() {
+    public Integer getIdProduct() {
         return idProduct;
     }
 
-    public void setIdProduct(Object idProduct) {
+    public void setIdProduct(Integer idProduct) {
         this.idProduct = idProduct;
     }
 

@@ -39,8 +39,7 @@ public class AdvertPresenter {
         String baseUrl = "http://10.0.2.2:8080/";
 
 
-        AndroidNetworking.get(baseUrl+"advert/all?id_category")
-                .addQueryParameter("id_category", String.valueOf(idCat))
+        AndroidNetworking.get(baseUrl+"advert/all?id_category="+String.valueOf(idCat)+"&state=1")
                 .setTag("Connect")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
@@ -56,7 +55,7 @@ public class AdvertPresenter {
                             advertList.add(advert);
                         }
 
-                        Log.e("advert", advertList.toString());
+
                         advertView.printAdvert(advertList);
                     }
 
@@ -99,7 +98,7 @@ public class AdvertPresenter {
             userJson.put("id", advert.getId());
             userJson.put("name", advert.getName());
             userJson.put("quantity", advert.getQuantity());
-            userJson.put("state", 1);
+            userJson.put("state", 2);
             userJson.put("date_lapsing", advert.getDateLapsing());
             userJson.put("end_date", advert.getEndDate());
             userJson.put("start_time_slot", advert.getStartTimeSlot());

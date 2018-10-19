@@ -85,6 +85,7 @@ public class AdvertAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 public void onItemClick(Advert item) {
                     Intent intent = new Intent(activity, DetailAdvertActivity.class);
                     intent.putExtra("advert_id", data.get(position).getId());
+                    intent.putExtra("user_id", String.valueOf(data.get(position).getIdUser()));
                     activity.startActivity(intent);
                     //Log.e("merci yoda", item.toString());
 
