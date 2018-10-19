@@ -2,10 +2,13 @@ package com.example.lukile.toogoodtothrow.product;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,43 +21,52 @@ import android.widget.TimePicker;
 
 import com.example.lukile.toogoodtothrow.OnBottomReachedListener;
 import com.example.lukile.toogoodtothrow.R;
+import com.example.lukile.toogoodtothrow.category.CategoryActivity;
 import com.example.lukile.toogoodtothrow.model.Category;
 
 import java.util.Calendar;
 import java.util.List;
 
 
-public class ProductActivity extends AppCompatActivity {
+public class ProductActivity extends AppCompatActivity implements ProductView{
     private ProductPresenter productPresenter;
 
     EditText editTextExpiryDate;
     EditText editTextPickupDate;
     EditText editTextPickupTimeStart;
     EditText editTextPickupTimeEnd;
+    EditText editTextQuantity;
+    EditText editTextComment;
     Button buttonValidProduct;
     Spinner spinnerProduct;
     RadioGroup categoryChoice;
 
     int categoryId;
+    String spinnerPro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
-        productPresenter = new ProductPresenter();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        productPresenter = new ProductPresenter((ProductView) this);
 
         buttonValidProduct = findViewById(R.id.valide_product_btn);
+        editTextComment = findViewById(R.id.comment_edt);
+        editTextQuantity = findViewById(R.id.quantity_edt);
         editTextExpiryDate = findViewById(R.id.expiry_date_edt);
         editTextPickupDate = findViewById(R.id.pickup_date_edt);
         editTextPickupTimeStart = findViewById(R.id.pickup_time_start_edt);
         editTextPickupTimeEnd = findViewById(R.id.pickup_time_end_edt);
         spinnerProduct = findViewById(R.id.product_choice_spinner);
         categoryChoice = findViewById(R.id.category_choice_rg);
+
+
 
 
         editTextExpiryDate.setOnClickListener(new View.OnClickListener() {
@@ -135,12 +147,6 @@ public class ProductActivity extends AppCompatActivity {
         });
 
 
-        buttonValidProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //
-            }
-        });
 
         categoryChoice.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
@@ -204,5 +210,40 @@ public class ProductActivity extends AppCompatActivity {
             }
 
         });
+
+
+        buttonValidProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                productPresenter.postProduct(spinnerProduct.getSelectedItem().toString(), editTextQuantity.getText().toString(), editTextPickupDate.getText().toString(), editTextExpiryDate.getText().toString(), editTextPickupTimeStart.getText().toString(), editTextPickupTimeEnd.getText().toString(), editTextComment.getText().toString(), categoryId);
+            }
+        });
     }
+
+    @Override
+    public void redirectAfterPublish() {
+        ProductActivity.this.startActivity(new Intent(ProductActivity.this, CategoryActivity.class));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_action, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.search_product:
+                Intent searchIntent = new Intent(ProductActivity.this, CategoryActivity.class);
+                ProductActivity.this.startActivity(searchIntent);
+                return true;
+            case R.id.add_product:
+                Intent addIntent = new Intent(ProductActivity.this, ProductActivity.class);
+                ProductActivity.this.startActivity(addIntent);
+                return true;
+        }
+        return true;
+    }
+
 }

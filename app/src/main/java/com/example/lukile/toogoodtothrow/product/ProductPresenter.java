@@ -24,6 +24,11 @@ import java.util.Date;
 import java.util.List;
 
 public class ProductPresenter {
+    ProductView productView;
+    public ProductPresenter(ProductView view) {
+        this.productView = view;
+    }
+
 
     public void getProductFromCategory(int categoryId) {
         final List<Product> productList = new ArrayList<>();
@@ -56,20 +61,21 @@ public class ProductPresenter {
     }
 
 
-    public void postProduct (String name, int state, int quantity, Date startDate, Date endDate, String startTime, String endTime, String comment, Category categoryId){
+    public void postProduct (String name, String quantity, String expiryDate, String dateLapsing, String startTime, String endTime, String comment, int categoryId){
         String baseUrl = "http://10.0.2.2:8080/";
         JSONObject productJson = new JSONObject();
         try {
             productJson.put("name", name);
-            productJson.put("state", state);
+            productJson.put("state", 1);
             productJson.put("quantity", quantity);
-            productJson.put("startDate", startDate);
-            productJson.put("endDate", endDate);
-            productJson.put("startTime", startTime);
-            productJson.put("endTime", endTime);
+            productJson.put("date_lapsing", dateLapsing);
+            productJson.put("end_date", expiryDate);
+            productJson.put("start_time_slot", startTime);
+            productJson.put("end_time_slot", endTime);
             productJson.put("comment", comment);
-            productJson.put("userId", 1);
-            productJson.put("categoryId", startTime);
+            productJson.put("id_product", 1);
+            productJson.put("id_user", 1);
+            productJson.put("id_category", categoryId);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -83,7 +89,7 @@ public class ProductPresenter {
                 .getAsString(new StringRequestListener() {
                     @Override
                     public void onResponse(String response) {
-                        //
+                        productView.redirectAfterPublish();
                     }
 
                     @Override
