@@ -21,7 +21,9 @@
         android:id="@+id/rcv_category"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="56dp">
+        android:paddingBottom="56dp"
+        android:layout_marginTop="?attr/actionBarSize">
+
     </android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>

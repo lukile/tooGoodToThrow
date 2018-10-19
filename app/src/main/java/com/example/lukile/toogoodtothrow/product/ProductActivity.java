@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -34,13 +35,18 @@ public class ProductActivity extends AppCompatActivity {
     Spinner spinnerProduct;
     RadioGroup categoryChoice;
 
+    int categoryId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        productPresenter = new ProductPresenter();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
+        productPresenter = new ProductPresenter();
 
         buttonValidProduct = findViewById(R.id.valide_product_btn);
         editTextExpiryDate = findViewById(R.id.expiry_date_edt);
@@ -49,6 +55,7 @@ public class ProductActivity extends AppCompatActivity {
         editTextPickupTimeEnd = findViewById(R.id.pickup_time_end_edt);
         spinnerProduct = findViewById(R.id.product_choice_spinner);
         categoryChoice = findViewById(R.id.category_choice_rg);
+
 
         editTextExpiryDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,42 +143,56 @@ public class ProductActivity extends AppCompatActivity {
         });
 
         categoryChoice.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i) {
                     case R.id.fruits_and_vegetables:
+                        categoryId = 1;
                         populateSpinner(R.array.fruits_and_vegetable_arr);
                         break;
                     case R.id.milk_product:
+                        categoryId = 2;
                         populateSpinner(R.array.milk_product);
                         break;
                     case R.id.cooked_food:
+                        categoryId = 3;
                         populateSpinner(R.array.cooked_food);
                         break;
                     case R.id.starchy:
+                        categoryId = 4;
                         populateSpinner(R.array.starchy);
                         break;
                     case R.id.candy_and_sweet:
+                        categoryId = 5;
                         populateSpinner(R.array.candy_and_sweet);
                         break;
                     case R.id.drink:
+                        categoryId = 6;
                         populateSpinner(R.array.drink);
                         break;
                     case R.id.frozen:
+                        categoryId = 7;
                         populateSpinner(R.array.frozen);
                         break;
                     case R.id.vop:
+                        categoryId = 8;
                         populateSpinner(R.array.vop);
                         break;
                     case R.id.grocery:
+                        categoryId = 9;
                         populateSpinner(R.array.grocery);
                         break;
                     case R.id.baby_food:
+                        categoryId = 10;
                         populateSpinner(R.array.baby_food);
                         break;
                     case R.id.tea_coffee_chocolate:
+                        categoryId = 11;
                         populateSpinner(R.array.tea_coffee_chocolate);
+                        break;
                 }
+
 
 
             }

@@ -51,6 +51,11 @@
     <string name="pickup_date">Date de retarit</string>
     <string name="pickup_time">Heure de retrait</string>
     <string name="comment">Commentaires</string>
+    <string name="title_activity_menu">TooGoodToThrow</string>
+    <string name="nav_header_title">gr</string>
+    <string name="nav_header_desc">er</string>
+    <string name="nav_header_subtitle">e</string>
+    <string name="action_settings">petiticfbfgn</string>
 
     <string-array name="fruits_and_vegetable_arr">
         <item>--Choix--</item>

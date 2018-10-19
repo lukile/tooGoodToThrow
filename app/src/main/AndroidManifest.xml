@@ -24,16 +24,14 @@
         </activity>
         <activity android:name=".signup.SignupActivity" />
         <activity android:name=".conditions.ConditionsSignupActivity" />
-        <activity android:name=".category.CategoryActivity" />
+        <activity android:name=".category.CategoryActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".ResetPasswordActivity" />
-        <activity android:name=".product.ProductActivity" />
+        <activity android:name=".product.ProductActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".advert.AdvertActivity" />
         <activity android:name=".advert.DetailAdvertActivity" />
-        <activity
-            android:name=".MenuActivity"
-            android:label="@string/title_activity_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

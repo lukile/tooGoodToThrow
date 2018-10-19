@@ -35,7 +35,7 @@ public class CategoryActivity extends AppCompatActivity implements ICategoryView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         categoryPresenter = new CategoryPresenter((ICategoryView) this);
@@ -76,11 +76,13 @@ public class CategoryActivity extends AppCompatActivity implements ICategoryView
 
     }
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_action, menu);
         return true;
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.search_product:
@@ -94,6 +96,8 @@ public class CategoryActivity extends AppCompatActivity implements ICategoryView
         }
         return true;
     }
+
+
 
 
 }
