@@ -3,6 +3,7 @@ package com.example.lukile.toogoodtothrow;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.androidnetworking.AndroidNetworking;
 import com.example.lukile.toogoodtothrow.login.LoginActivity;
@@ -16,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        Intent myIntent = new Intent(MainActivity.this, ProductActivity.class);
+        Intent myIntent = new Intent(MainActivity.this, LoginActivity.class);
         MainActivity.this.startActivity(myIntent);
     }
 }
